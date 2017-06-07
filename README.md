@@ -7,4 +7,22 @@
 
 ## Tests
 
-Visit `/test/index.html`
+```bash
+# Works only on OSX with Google Chrome installed
+$ npm test
+```
+
+otherwise just visit `/test/index.html`.
+
+## Contributing?
+
+```bash
+# Install deps
+$ npm install -g mocha chai babel-cli xo
+
+# Run linter
+$ npm run lint
+
+# Transpile ES6 in src/ to ES5 in dist/
+$ npm run transpile
+```
