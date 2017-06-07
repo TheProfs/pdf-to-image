@@ -40,7 +40,7 @@
 				fileReader = new FileReader();
 				fileReader.onload = ev => {
 					window.userPDF = fileReader.result;
-					mocha.run();
+					console.log(mocha.run());
 				}
 
 				fileReader.readAsArrayBuffer(this.files[0]);

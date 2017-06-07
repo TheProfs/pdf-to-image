@@ -1,4 +1,5 @@
 /* eslint import/no-unassigned-import: 0 */
+/* eslint no-unused-vars: 0 */
 /* eslint no-unused-expressions: 0 */
 /* eslint no-undef: 0 */
 
@@ -15,24 +16,24 @@ describe('PdfToImage', () => {
 		});
 	});
 
-	describe('Renders PDF pages as images', () => {
+	describe('Renders PDF pages as images', function () {
+		this.timeout(6000);
+
 		it('should throw if no file is passed in', () => {
 			expect(() => {
 				(new PdfToImage()).toImages();
 			}).to.throw(Error);
 		});
 
-		it(`Should emit 'page' events, each event containing a PDF page as an image`, done => {
+		it(`Should emit 'page' events, each event containing a PDF page as an image
+				and finally it should emit a 'finish' event`, done => {
 			const testData = {
-				file: window.userPDF,
-				pages: 3,
-				_pageEventCount: 0 // Internal: do not change
+				file: window.userPDF
 			};
 
 			const pdfToImage = new PdfToImage();
 
 			pdfToImage.addListener('page', result => {
-
 				result.should.be.an('Object');
 				result.should.have.property('dataURI');
 				result.dataURI.should.be.a('String');
@@ -40,13 +41,10 @@ describe('PdfToImage', () => {
 
 				const image = new Image();
 				image.src = result.dataURI;
-				document.getElementById("result-container").appendChild(image);
-
-				testData._pageEventCount++;
-				if (testData._pageEventCount === testData.pages) {
-					done();
-				}
+				document.getElementById('result-container').appendChild(image);
 			});
+
+			pdfToImage.addListener('finish', done);
 
 			pdfToImage.toImages(testData.file);
 		});
