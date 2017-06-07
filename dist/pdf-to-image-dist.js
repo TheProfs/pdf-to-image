@@ -90,6 +90,10 @@
 			});
 		}
 
+		getNumOfPages(pdfFile) {
+			return PDFJS.getDocument(pdfFile).then(pdf => pdf.pdfInfo.numPages);
+		}
+
 		_renderOnCanvas(page) {
 			const scale = 1.5;
 			const viewport = page.getViewport(scale);

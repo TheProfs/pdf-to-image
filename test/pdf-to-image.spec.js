@@ -9,28 +9,35 @@ const expect = chai.expect;
 const should = chai.should();
 
 describe('PdfToImage', () => {
-	describe('constructor', () => {
-		it('should instantiate', () => {
+	describe('Constructor', () => {
+		it('Should instantiate', () => {
 			const pdfToImage = new PdfToImage();
 			expect(pdfToImage).to.be.ok;
 		});
 	});
 
+	describe('Returns info about the PDF', function () {
+		it('Should return the number of pages of the document', () => {
+			const pdfToImage = new PdfToImage();
+
+			return pdfToImage.getNumOfPages(window.userPDF).then(numPages => {
+				numPages.should.be.a('Number');
+				numPages.should.be.above(0);
+			})
+		})
+	});
+
 	describe('Renders PDF pages as images', function () {
 		this.timeout(6000);
 
-		it('should throw if no file is passed in', () => {
+		it('Should throw if no file is passed in', () => {
 			expect(() => {
 				(new PdfToImage()).toImages();
 			}).to.throw(Error);
 		});
 
-		it(`should emit 'page' events, each event containing a PDF page as an Base64
+		it(`Should emit 'page' events, each event containing a PDF page as an Base64
 		 		image string and finally it should emit a 'finish' event`, done => {
-			const testData = {
-				file: window.userPDF
-			};
-
 			const pdfToImage = new PdfToImage();
 
 			pdfToImage.addListener('page', result => {
@@ -46,7 +53,7 @@ describe('PdfToImage', () => {
 
 			pdfToImage.addListener('finish', done);
 
-			pdfToImage.toImages(testData.file);
+			pdfToImage.toImages(window.userPDF);
 		});
 	});
 });
