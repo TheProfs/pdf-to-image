@@ -25,8 +25,8 @@ describe('PdfToImage', () => {
 			}).to.throw(Error);
 		});
 
-		it(`should emit 'page' events, each event containing a PDF page as an image
-				and finally it should emit a 'finish' event`, done => {
+		it(`should emit 'page' events, each event containing a PDF page as an Base64
+		 		image string and finally it should emit a 'finish' event`, done => {
 			const testData = {
 				file: window.userPDF
 			};
