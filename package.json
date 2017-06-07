@@ -1,0 +1,36 @@
+{
+  "name": "pdf-to-image",
+  "version": "0.0.1",
+  "description": "Progressively render PDFs as images on the client",
+  "main": "echo 'no entry point'",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "express": "^4.15.3",
+    "mocha-phantomjs-core": "^2.1.1"
+  },
+  "devDependencies": {
+    "xo": "^0.18.2"
+  },
+  "scripts": {
+    "test": "echo 'Visit test/index.html'",
+    "lint": "xo './src/**/*.js' && xo './test/**/*.js'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TheProfs/pdf-to-image.git"
+  },
+  "keywords": [
+    "pdf",
+    "client",
+    "pdf.js",
+    "image"
+  ],
+  "author": "@TheProfs",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/TheProfs/pdf-to-image/issues"
+  },
+  "homepage": "https://github.com/TheProfs/pdf-to-image#readme"
+}
