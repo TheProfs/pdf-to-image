@@ -12,12 +12,14 @@
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
+    "chai": "^4.0.2",
+    "mocha": "^3.4.2",
     "xo": "^0.18.2"
   },
   "scripts": {
     "test": "open -a 'Google Chrome' test/index.html",
     "lint": "xo './src/**/*.js' && xo './test/**/*.js'",
-		"transpile": "babel src/pdf-to-image.js --out-file dist/pdf-to-image-dist.js"
+    "build": "babel src/pdf-to-image.js --out-file dist/pdf-to-image-dist.js"
   },
   "repository": {
     "type": "git",
