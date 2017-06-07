@@ -18,7 +18,10 @@
 		</style>
 	</head>
 	<body>
-	  <div id="mocha"><p><a href=".">Choose a PDF file</a></p></div>
+	  <div id="mocha">
+			<h3> Choose a PDF file to start the tests </h3>
+			<input id="file" type="file" accept="application/pdf"></input>
+		</div>
 	  <div id="messages"></div>
 	  <div id="fixtures"></div>
 
@@ -31,16 +34,14 @@
 	  <script>mocha.setup('bdd')</script>
 	  <script src="pdf-to-image.spec.js"></script>
 
-		<input id="file" type="file" accept="application/pdf"></input>
-		<div id="result-container">
+		<div id="result-container"></div>
 
-		</div>
 	  <script>
 			document.getElementById("file").addEventListener("change", function() {
 				fileReader = new FileReader();
 				fileReader.onload = ev => {
 					window.userPDF = fileReader.result;
-					console.log(mocha.run());
+					mocha.run();
 				}
 
 				fileReader.readAsArrayBuffer(this.files[0]);

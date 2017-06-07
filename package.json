@@ -14,7 +14,7 @@
     "xo": "^0.18.2"
   },
   "scripts": {
-    "test": "echo 'Visit test/index.html'",
+    "test": "open -a 'Google Chrome' test/index.html",
     "lint": "xo './src/**/*.js' && xo './test/**/*.js'"
   },
   "repository": {
