@@ -54,13 +54,10 @@ pdfToImage.toImages(file, [1, 2, 5]);
 ## Running Tests
 
 ```bash
-# If on OSX with Google Chrome installed,
 $ sudo npm install && npm install -g phantomjs mocha chai
 $ npm test
-# otherwise just visit `/test/index.html`.
 ```
-While the build distribution is ES5 compatible, the tests require an ES6 capable
-browser.
+
 
 ## Contributing?
 
@@ -78,8 +75,8 @@ $ npm run build
 
 ### Gotchas
 
-Always write tests in ES5 as [PhantomJS][4] which is the headless test env.
-does not support ES6. See [this Issue][5] for more details.
+- Always write tests in ES5 as [PhantomJS][4] which is the headless test env.
+does not support ES6. Read [here][5] for more details.
 
 ## Authors
 
