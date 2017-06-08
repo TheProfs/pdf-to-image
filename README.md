@@ -1,10 +1,8 @@
 [![XO code style](https://img.shields.io/badge/code_style-XO-5ed9c7.svg)](https://github.com/sindresorhus/xo)
 
 # pdf-to-image
-[WIP] - Progressively render PDF's as images on the client,
+> Progressively render PDF's as images on the client -
 cleanly wraps [Mozilla/PDF.js][1]
-
-> Because paying for servers is uh, uh
 
 ## Usage
 
@@ -33,14 +31,14 @@ pdfToImage.addListener('page', result => {
 });
 
 pdfToImage.addListener('finish', () => {
-// called when all pages has finished rendering
+// called when all pages have finished rendering
 });
 
 pdfToImage.addListener('error', err => {
-// called if an error occured during rendering
+// called if an error occurred during rendering
 });
 
-// Where file is  PDF File created by a FileReader instance
+// Where file is PDF File created by a FileReader instance
 pdfToImage.toImages(file);
 ```
 
