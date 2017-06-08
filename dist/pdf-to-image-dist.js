@@ -1,3 +1,5 @@
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
+
 /* eslint unicorn/no-abusive-eslint-disable: 0 */
 /* eslint no-unused-expressions: 0 */
 /* eslint no-undef: 0 */
@@ -69,20 +71,28 @@
 (function (exports) {
 	class PdfToImage extends EventEmitter {
 		toImages(pdfFile) {
+			var _this = this;
+
 			if (!pdfFile) {
 				throw new Error('No PDF file passed');
 			}
 
-			PDFJS.getDocument(pdfFile).then(async pdf => {
-				for (let i = 1; i <= pdf.numPages; i++) {
-					await pdf.getPage(i // eslint-disable-line no-await-in-loop
-					).then(this._renderPageOnCanvas.bind(this)).then(this._exportCanvasAsBase64.bind(this)).then(images => {
-						this.emit('page', { pageNum: i, images });
-					});
-				}
+			PDFJS.getDocument(pdfFile).then((() => {
+				var _ref = _asyncToGenerator(function* (pdf) {
+					for (let i = 1; i <= pdf.numPages; i++) {
+						yield pdf.getPage(i // eslint-disable-line no-await-in-loop
+						).then(_this._renderPageOnCanvas.bind(_this)).then(_this._exportCanvasAsBase64.bind(_this)).then(function (images) {
+							_this.emit('page', { pageNum: i, images });
+						});
+					}
 
-				this.emit('finish');
-			}, err => {
+					_this.emit('finish');
+				});
+
+				return function (_x) {
+					return _ref.apply(this, arguments);
+				};
+			})(), err => {
 				this.emit('error', { err });
 				throw new Error(err);
 			});

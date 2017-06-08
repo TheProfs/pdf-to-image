@@ -23,6 +23,6 @@ $ sudo npm install -g mocha chai babel-cli xo
 # Run linter
 $ npm run lint
 
-# Transpile ES6 in src/ to ES5 in dist/
+# Transpile ES2017 in src/ to ES5 in dist/
 $ npm run build
 ```
