@@ -3,7 +3,7 @@
 /* eslint no-undef: 0 */
 
 /*
- * Event Emitter
+ * Event Emitter, from: https://github.com/Olical/EventEmitter
  */
 
 /* eslint-disable */
