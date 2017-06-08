@@ -64,12 +64,13 @@ browser.
 
 ```bash
 # Install deps
-$ sudo npm install -g mocha chai babel-cli xo
+$ sudo npm install -g mocha chai babel-cli concat-cli xo
 
 # Run linter
 $ npm run lint
 
-# Transpile ES2017 in src/ to ES5 in dist/
+# - Transpile src/pdf-to-image.js from ES2016 -> ES5
+# - Bundle it together with all .js files in /lib and put it in dist/
 $ npm run build
 ```
 
