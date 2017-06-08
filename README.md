@@ -36,7 +36,7 @@ pdfToImage.addListener('finish', () => {
 // called when all pages has finished rendering
 });
 
-pdfToImage.addListener('finish', err => {
+pdfToImage.addListener('error', err => {
 // called if an error occured during rendering
 });
 
