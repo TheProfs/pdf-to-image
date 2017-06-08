@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	  <meta charset="utf-8">
+	  <title>PDF to Image tests</title>
+	  <link rel="stylesheet" media="all" href="../vendor/mocha.css">
+		<style>
+			#result-container {
+				max-height: 480px;
+			}
+
+			#result-container img {
+				display: inline-block;
+				max-height: 480px;
+				width: auto;
+				margin: 4px;
+			}
+		</style>
+	</head>
+	<body>
+	  <div id="mocha">
+			<h3> Choose a PDF file to start the tests </h3>
+			<input id="file" type="file" accept="application/pdf"></input>
+		</div>
+	  <div id="messages"></div>
+	  <div id="fixtures"></div>
+
+	  <script src="../vendor/mocha.js"></script>
+	  <script src="../vendor/chai.js"></script>
+
+	  <script src="../dist/pdf-to-image-dist.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/1.8.428/pdf.min.js"></script>
+
+	  <script>mocha.setup('bdd')</script>
+	  <script src="pdf-to-image.spec.js"></script>
+
+		<div id="result-container"></div>
+
+	  <script>
+			document.getElementById("file").addEventListener("change", function() {
+				fileReader = new FileReader();
+				fileReader.onload = ev => {
+					window.userPDF = fileReader.result;
+					mocha.run();
+				}
+
+				fileReader.readAsArrayBuffer(this.files[0]);
+			})
+		</script>
+	</body>
+</html>
