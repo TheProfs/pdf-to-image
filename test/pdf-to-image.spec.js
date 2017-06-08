@@ -8,6 +8,34 @@
 const expect = chai.expect;
 const should = chai.should();
 
+/*
+ * Utilities
+ */
+
+class TickCounter {
+	constructor(opts = {expectedTicks: 0}, cb) {
+		this._expectedTicks = opts.expectedTicks;
+		this._ticks = 0;
+		this._cb = cb;
+	}
+
+	tick() {
+		this._ticks++;
+	}
+
+	finish() {
+		if (this._ticks === this._expectedTicks) {
+			return this._cb();
+		}
+
+		return this._cb(new Error(`Ticked ${this._ticks} but expected ${this._expectedTicks}`));
+	}
+ }
+
+/*
+ * Actual Tests
+ */
+
 describe('PdfToImage', () => {
 	describe('Constructor', () => {
 		it('Should instantiate', () => {
@@ -68,6 +96,20 @@ describe('PdfToImage', () => {
 			pdfToImage.addListener('finish', done);
 
 			pdfToImage.toImages(window.userPDF);
+		});
+
+		it(`Should render only specified pages when provided with an Array
+				containing the required page numbers`, done => {
+			const pdfToImage = new PdfToImage();
+			const pagesToPrint = [1];
+			const tickCounter = new TickCounter({
+				expectedTicks: pagesToPrint.length
+			}, done);
+
+			pdfToImage.addListener('page', () => tickCounter.tick());
+			pdfToImage.addListener('finish', () => tickCounter.finish());
+
+			pdfToImage.toImages(window.userPDF, pagesToPrint);
 		});
 	});
 });

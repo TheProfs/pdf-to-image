@@ -18,19 +18,23 @@
 
 (function (exports) {
 	class PdfToImage extends EventEmitter {
-		toImages(pdfFile) {
+		toImages(pdfFile, pagesToPrint = []) {
 			if (!pdfFile) {
 				throw new Error('No PDF file passed');
 			}
 
 			PDFJS.getDocument(pdfFile).then(async pdf => {
-				for (let i = 1; i <= pdf.numPages; i++) {
-					await pdf.getPage(i) // eslint-disable-line no-await-in-loop
-					.then(this._renderPageOnCanvas.bind(this))
-					.then(this._exportCanvasAsBase64.bind(this))
-					.then(images => {
-						this.emit('page', {pageNum: i, images});
-					});
+				// If no specific pages to print requested, create a sequence `[1..N]`
+				pagesToPrint = pagesToPrint.length ?
+					pagesToPrint : Array.from(Array(10).keys()).slice(1);
+
+				for (const pageNum of pagesToPrint) {
+					await pdf.getPage(pageNum) // eslint-disable-line no-await-in-loop
+						.then(this._renderPageOnCanvas.bind(this))
+						.then(this._exportCanvasAsBase64.bind(this))
+						.then(images => {
+							this.emit('page', {pageNum, images});
+						});
 				}
 
 				this.emit('finish');

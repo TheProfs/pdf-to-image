@@ -12,7 +12,9 @@
 $ npm test
 ```
 
-otherwise just visit `/test/index.html`.
+Otherwise just visit `/test/index.html`.
+While the build distribution is ES5 compatible, the tests require an
+ES6 capable browser.
 
 ## Contributing?
 

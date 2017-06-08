@@ -70,7 +70,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
 (function (exports) {
 	class PdfToImage extends EventEmitter {
-		toImages(pdfFile) {
+		toImages(pdfFile, pagesToPrint = []) {
 			var _this = this;
 
 			if (!pdfFile) {
@@ -79,10 +79,13 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
 			PDFJS.getDocument(pdfFile).then((() => {
 				var _ref = _asyncToGenerator(function* (pdf) {
-					for (let i = 1; i <= pdf.numPages; i++) {
-						yield pdf.getPage(i // eslint-disable-line no-await-in-loop
+					// If no specific pages to print requested, create a sequence `[1..N]`
+					pagesToPrint = pagesToPrint.length ? pagesToPrint : Array.from(Array(10).keys()).slice(1);
+
+					for (const pageNum of pagesToPrint) {
+						yield pdf.getPage(pageNum // eslint-disable-line no-await-in-loop
 						).then(_this._renderPageOnCanvas.bind(_this)).then(_this._exportCanvasAsBase64.bind(_this)).then(function (images) {
-							_this.emit('page', { pageNum: i, images });
+							_this.emit('page', { pageNum, images });
 						});
 					}
 
