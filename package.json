@@ -17,7 +17,7 @@
     "xo": "^0.18.2"
   },
   "scripts": {
-    "test": "open -a 'Google Chrome' test/index.html",
+    "test": "phantomjs node_modules/mocha-phantomjs-core/mocha-phantomjs-core.js test/index.html",
     "lint": "xo './src/**/*.js' && xo './test/**/*.js'",
     "build": "babel src/pdf-to-image.js --out-file dist/pdf-to-image-es5.js && concat-cli -f lib/*.js dist/pdf-to-image-es5.js -o dist/pdf-to-image-dist.js"
   },
