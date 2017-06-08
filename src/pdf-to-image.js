@@ -18,17 +18,16 @@
 
 (function (exports) {
 	class PdfToImage extends EventEmitter {
-		toImages(pdfFile, pagesToPrint = []) {
+
+		toImages(pdfFile, pages = []) {
 			if (!pdfFile) {
 				throw new Error('No PDF file passed');
 			}
 
 			PDFJS.getDocument(pdfFile).then(async pdf => {
-				// If no specific pages to print requested, create a sequence `[1..N]`
-				pagesToPrint = pagesToPrint.length ?
-					pagesToPrint : Array.from(Array(10).keys()).slice(1);
+				pages = pages.length ? pages : this._createSequence(pdf.pdfInfo.numPages);
 
-				for (const pageNum of pagesToPrint) {
+				for (const pageNum of pages) {
 					await pdf.getPage(pageNum) // eslint-disable-line no-await-in-loop
 						.then(this._renderPageOnCanvas.bind(this))
 						.then(this._exportCanvasAsBase64.bind(this))
@@ -157,6 +156,10 @@
 			canvas.height = height;
 
 			return canvas;
+		}
+
+		_createSequence(max) {
+			return Array.from(Array(max).keys()).slice(1);
 		}
 	}
 
