@@ -55,6 +55,7 @@ pdfToImage.toImages(file, [1, 2, 5]);
 
 ```bash
 # If on OSX with Google Chrome installed,
+$ sudo npm install && npm install -g phantomjs mocha chai
 $ npm test
 # otherwise just visit `/test/index.html`.
 ```
