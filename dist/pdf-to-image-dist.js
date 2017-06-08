@@ -201,10 +201,6 @@
 
 			return canvas;
 		}
-
-		_destroyTempCanvas(canvas) {
-			return canvas.parentNode.removeChild(canvas);
-		}
 	}
 
 	exports.PdfToImage = PdfToImage;
