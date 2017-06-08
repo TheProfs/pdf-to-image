@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/TheProfs/pdf-to-image.svg?branch=master)](https://travis-ci.org/TheProfs/pdf-to-image)
 [![XO code style](https://img.shields.io/badge/code_style-XO-5ed9c7.svg)](https://github.com/sindresorhus/xo)
 
 # pdf-to-image
@@ -10,9 +11,9 @@ Depends on [Mozilla/PDF.js][1], you can find distribution versions [here][2]
 or just grab it from a [CDN][3]
 
 ```html
-<!-- Include PDF.js and pdf-to-image.js -->
+<!-- Include PDF.js and pdf-to-image.js in this order -->
 <script src="dist/pdf-to-image-dist.js"></script>
-<script src="pdf.min.js"></script>
+<script src="pdfjs/pdf.min.js"></script>
 ```
 
 ## API
@@ -54,6 +55,7 @@ pdfToImage.toImages(file, [1, 2, 5]);
 
 ```bash
 # If on OSX with Google Chrome installed,
+$ sudo npm install && npm install -g phantomjs mocha chai
 $ npm test
 # otherwise just visit `/test/index.html`.
 ```
@@ -64,22 +66,28 @@ browser.
 
 ```bash
 # Install deps
-$ sudo npm install -g mocha chai babel-cli xo
+$ sudo npm install -g mocha chai babel-cli concat-cli xo
 
 # Run linter
 $ npm run lint
 
-# Transpile ES2017 in src/ to ES5 in dist/
+# - Transpile src/pdf-to-image.js from ES2016 -> ES5 and..
+# - Bundle it together with all .js files in src/lib/ and put it in dist/
 $ npm run build
 ```
 
+### Gotchas
+
+Always write tests in ES5 as [PhantomJS][4] which is the headless test env.
+does not support ES6. See [this Issue][5] for more details.
+
 ## Authors
 
-- Nicholas Kyriakides, [@nicholaswmin][4], <nik.kyriakides@gmail.com>
+- Nicholas Kyriakides, [@nicholaswmin][6], <nik.kyriakides@gmail.com>
 
 ## Owners
 
-- [The Profs LTD][5]
+- [The Profs LTD][7]
 
 ## License
 
@@ -90,5 +98,7 @@ excluding third-party libraries.
 [1]: https://mozilla.github.io/pdf.js/
 [2]: https://github.com/mozilla/pdfjs-dist
 [3]: https://cdnjs.cloudflare.com/ajax/libs/pdf.js/1.8.428/pdf.min.js
-[4]:https://github.com/nicholaswmin
-[5]:https://github.com/TheProfs
+[4]: http://phantomjs.org/
+[5]: https://github.com/nathanboktae/mocha-phantomjs/issues/218
+[6]: https://github.com/nicholaswmin
+[7]: https://github.com/TheProfs
