@@ -8,7 +8,7 @@
 
 'use strict';
 
-class PdfToImage extends EventEmitter {
+class PdfToImage extends EventEmitter { // eslint-disable-line no-unused-vars
 
 	toImages(pdfFile, pages = []) {
 		if (!pdfFile) {
@@ -61,6 +61,7 @@ class PdfToImage extends EventEmitter {
 	}
 
 	/* eslint-disable */
+	// Taken from: https://stackoverflow.com/a/18320662/1814486
 	_resampleCanvas(canvas, width, height, resize_canvas) {
 		var width_source = canvas.width;
 		var height_source = canvas.height;

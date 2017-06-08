@@ -36,6 +36,8 @@ var PdfToImage = function (_EventEmitter) {
 
 	_createClass(PdfToImage, [{
 		key: 'toImages',
+		// eslint-disable-line no-unused-vars
+
 		value: function toImages(pdfFile) {
 			var _this2 = this;
 
@@ -180,6 +182,7 @@ var PdfToImage = function (_EventEmitter) {
 		}
 
 		/* eslint-disable */
+		// Taken from: https://stackoverflow.com/a/18320662/1814486
 
 	}, {
 		key: '_resampleCanvas',
