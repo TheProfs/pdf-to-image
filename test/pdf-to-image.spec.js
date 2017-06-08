@@ -24,11 +24,9 @@ class TickCounter {
 	}
 
 	finish() {
-		if (this._ticks === this._expectedTicks) {
-			return this._cb();
-		}
+		const err = new Error(`Ticked ${this._ticks} but expected ${this._expectedTicks}`);
 
-		return this._cb(new Error(`Ticked ${this._ticks} but expected ${this._expectedTicks}`));
+		return this._cb(this._ticks === this._expectedTicks ? false : err);
 	}
  }
 
