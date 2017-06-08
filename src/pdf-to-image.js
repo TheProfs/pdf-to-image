@@ -27,7 +27,7 @@
 				for (let i = 1; i <= pdf.numPages; i++) {
 					await pdf.getPage(i) // eslint-disable-line no-await-in-loop
 					.then(this._renderPageOnCanvas.bind(this))
-					.then(this._canvasToImages.bind(this))
+					.then(this._exportCanvasAsBase64.bind(this))
 					.then(images => {
 						this.emit('page', {pageNum: i, images});
 					});
@@ -40,7 +40,7 @@
 			});
 		}
 
-		_canvasToImages(canvas) {
+		_exportCanvasAsBase64(canvas) {
 			// A4 page in portrait: 210 x 297
 			return {
 				original: canvas.toDataURL('image/jpeg'),
