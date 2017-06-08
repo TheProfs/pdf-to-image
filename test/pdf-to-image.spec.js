@@ -16,15 +16,15 @@ describe('PdfToImage', () => {
 		});
 	});
 
-	describe('Returns info about the PDF', function () {
+	describe('Returns info about the PDF', () => {
 		it('Should return the number of pages of the document', () => {
 			const pdfToImage = new PdfToImage();
 
 			return pdfToImage.getNumOfPages(window.userPDF).then(numPages => {
 				numPages.should.be.a('Number');
 				numPages.should.be.above(0);
-			})
-		})
+			});
+		});
 	});
 
 	describe('Renders PDF pages as images', function () {
@@ -36,19 +36,33 @@ describe('PdfToImage', () => {
 			}).to.throw(Error);
 		});
 
-		it(`Should emit 'page' events, each event containing a PDF page as an Base64
-		 		image string and finally it should emit a 'finish' event`, done => {
+		it(`Should emit 'page' events containing each PDF page's Base64 images,
+			both image & thumbnail, then finally it should emit a 'finish' event`, done => {
 			const pdfToImage = new PdfToImage();
 
 			pdfToImage.addListener('page', result => {
 				result.should.be.an('Object');
-				result.should.have.property('dataURI');
-				result.dataURI.should.be.a('String');
-				result.dataURI.should.have.length.above(200);
 
-				const image = new Image();
-				image.src = result.dataURI;
-				document.getElementById('result-container').appendChild(image);
+				result.should.have.property('pageNum');
+				result.should.have.property('images');
+
+				result.pageNum.should.be.a('Number');
+				result.pageNum.should.be.above(0);
+
+				result.images.should.have.property('original');
+				result.images.should.have.property('thumbnail');
+
+				result.images.original.should.be.a('String');
+				result.images.original.should.have.length.above(200);
+
+				result.images.thumbnail.should.be.a('String');
+				result.images.thumbnail.should.have.length.above(200);
+
+				result.images.thumbnail.length.should.be.lessThan(result.images.original.length);
+
+				const original = new Image();
+				original.src = result.images.original;
+				document.getElementById('result-container').appendChild(original);
 			});
 
 			pdfToImage.addListener('finish', done);
