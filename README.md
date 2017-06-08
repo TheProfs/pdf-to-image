@@ -10,9 +10,9 @@ Depends on [Mozilla/PDF.js][1], you can find distribution versions [here][2]
 or just grab it from a [CDN][3]
 
 ```html
-<!-- Include PDF.js and pdf-to-image.js -->
+<!-- Include PDF.js and pdf-to-image.js in this order -->
 <script src="dist/pdf-to-image-dist.js"></script>
-<script src="pdf.min.js"></script>
+<script src="pdfjs/pdf.min.js"></script>
 ```
 
 ## API
@@ -69,8 +69,8 @@ $ sudo npm install -g mocha chai babel-cli concat-cli xo
 # Run linter
 $ npm run lint
 
-# - Transpile src/pdf-to-image.js from ES2016 -> ES5
-# - Bundle it together with all .js files in /lib and put it in dist/
+# - Transpile src/pdf-to-image.js from ES2016 -> ES5 and..
+# - Bundle it together with all .js files in src/lib/ and put it in dist/
 $ npm run build
 ```
 

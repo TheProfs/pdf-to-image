@@ -15,8 +15,6 @@ describe('solve for y', function() {
 	it('shoud solve for x', function(done) {
 		var pdf = new PdfToImage();
 		pdf.toImages('test.pdf')
-		pdf.addListener('finish', function() {
-			done();
-		})
+		done()
 	})
 })

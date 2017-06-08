@@ -19,7 +19,7 @@
   "scripts": {
     "test": "phantomjs node_modules/mocha-phantomjs-core/mocha-phantomjs-core.js test/index.html",
     "lint": "xo './src/**/*.js' && xo './test/**/*.js'",
-    "build": "babel src/pdf-to-image.js --out-file dist/pdf-to-image-es5.js && concat-cli -f lib/*.js dist/pdf-to-image-es5.js -o dist/pdf-to-image-dist.js"
+    "build": "babel src/pdf-to-image.js --out-file dist/pdf-to-image-es5.js && concat-cli -f src/lib/*.js dist/pdf-to-image-es5.js -o dist/pdf-to-image-dist.js"
   },
   "repository": {
     "type": "git",
