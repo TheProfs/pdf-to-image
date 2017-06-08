@@ -1,7 +1,8 @@
 [![XO code style](https://img.shields.io/badge/code_style-XO-5ed9c7.svg)](https://github.com/sindresorhus/xo)
 
 # pdf-to-image
-[WIP] - Render PDF's to images on the client
+[WIP] - Progressively render PDF's as images on the client,
+cleanly wraps [Mozilla/PDF.js][1]
 
 > Because paying for servers is uh, uh
 
@@ -73,6 +74,20 @@ $ npm run lint
 # Transpile ES2017 in src/ to ES5 in dist/
 $ npm run build
 ```
+
+## Authors
+
+- Nicholas Kyriakides, [@nicholaswmin][4], <nik.kyriakides@gmail.com>
+
+## Owners
+
+- [The Profs LTD][5]
+
+## License
+
+All portions of the source code are proprietary,
+excluding third-party libraries.
+
 
 [1]: https://mozilla.github.io/pdf.js/
 [2]: https://github.com/mozilla/pdfjs-dist
