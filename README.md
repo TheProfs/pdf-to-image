@@ -92,3 +92,5 @@ excluding third-party libraries.
 [1]: https://mozilla.github.io/pdf.js/
 [2]: https://github.com/mozilla/pdfjs-dist
 [3]: https://cdnjs.cloudflare.com/ajax/libs/pdf.js/1.8.428/pdf.min.js
+[4]:https://github.com/nicholaswmin
+[5]:https://github.com/TheProfs
