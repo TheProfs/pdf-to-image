@@ -74,13 +74,18 @@ $ npm run lint
 $ npm run build
 ```
 
+### Gotchas
+
+Always write tests in ES5 as [PhantomJS][4] which is the headless test env.
+does not support ES6. See [this Issue][5] for more details.
+
 ## Authors
 
-- Nicholas Kyriakides, [@nicholaswmin][4], <nik.kyriakides@gmail.com>
+- Nicholas Kyriakides, [@nicholaswmin][6], <nik.kyriakides@gmail.com>
 
 ## Owners
 
-- [The Profs LTD][5]
+- [The Profs LTD][7]
 
 ## License
 
@@ -91,5 +96,7 @@ excluding third-party libraries.
 [1]: https://mozilla.github.io/pdf.js/
 [2]: https://github.com/mozilla/pdfjs-dist
 [3]: https://cdnjs.cloudflare.com/ajax/libs/pdf.js/1.8.428/pdf.min.js
-[4]:https://github.com/nicholaswmin
-[5]:https://github.com/TheProfs
+[4]: http://phantomjs.org/
+[5]: https://github.com/nathanboktae/mocha-phantomjs/issues/218
+[6]: https://github.com/nicholaswmin
+[7]: https://github.com/TheProfs

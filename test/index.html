@@ -4,18 +4,6 @@
 	  <meta charset="utf-8">
 	  <title>PDF to Image tests</title>
 	  <link rel="stylesheet" media="all" href="lib/mocha.css">
-		<style>
-			#result-container {
-				max-height: 480px;
-			}
-
-			#result-container img {
-				display: inline-block;
-				max-height: 480px;
-				width: auto;
-				margin: 4px;
-			}
-		</style>
 	</head>
 	<body>
 		<div id="mocha"></div>
@@ -30,8 +18,6 @@
 
 	  <script>mocha.setup('bdd')</script>
 	  <script src="pdf-to-image.spec.js"></script>
-
-		<div id="result-container"></div>
 
 	  <script>
 			mocha.useColors(true);
