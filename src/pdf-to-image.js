@@ -35,14 +35,14 @@ class PdfToImage extends EventEmitter { // eslint-disable-line no-unused-vars
   }
 
   _base64ToFile(base64) {
-    // Testing envs. such as Phantom cannot create neither a Blob nor a File
-    try {
-      const blob = new Blob([base64], {type:'application/pdf'});
+    const blob = new Blob([base64], {type:'application/pdf'});
 
-      return new File([blob], "export.pdf");
-    } catch (err) {
-      // If that's the case, just return the error text
-      return err;
+    // @NOTE
+    // File constructor errors in PhantomJS, the test driver used for testing
+    try {
+      return new File([blob], 'export.pdf');
+    } catch(err) {
+      return 'File constructor not supported';
     }
   }
 

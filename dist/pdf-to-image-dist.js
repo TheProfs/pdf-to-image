@@ -152,14 +152,14 @@ var PdfToImage = function (_EventEmitter) {
   }, {
     key: '_base64ToFile',
     value: function _base64ToFile(base64) {
-      // Testing envs. such as Phantom cannot create neither a Blob nor a File
-      try {
-        var blob = new Blob([base64], { type: 'application/pdf' });
+      var blob = new Blob([base64], { type: 'application/pdf' });
 
-        return new File([blob], "export.pdf");
+      // @NOTE
+      // File constructor errors in PhantomJS, the test driver used for testing
+      try {
+        return new File([blob], 'export.pdf');
       } catch (err) {
-        // If that's the case, just return the error text
-        return err;
+        return 'File constructor not supported';
       }
     }
   }, {
