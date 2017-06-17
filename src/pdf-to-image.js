@@ -22,9 +22,9 @@ class PdfToImage extends EventEmitter { // eslint-disable-line no-unused-vars
         await pdf.getPage(pageNum) // eslint-disable-line no-await-in-loop
           .then(this._renderPageAsBase64.bind(this))
           .then(this._base64ToFile.bind(this))
-          .then(file => {
-            this.emit('page', {pageNum, file: file});
-          })
+          .then(blob => {
+            this.emit('page', {pageNum, blob});
+          });
       }
 
       this.emit('finish');
@@ -35,13 +35,20 @@ class PdfToImage extends EventEmitter { // eslint-disable-line no-unused-vars
   }
 
   _base64ToFile(base64) {
-    const blob = new Blob([base64], {type:'application/pdf'});
-
     // @NOTE
-    // File constructor errors in PhantomJS, the test driver used for testing
+    // Blob constructor errors in PhantomJS, the test driver used for testing
     try {
-      return new File([blob], 'export.pdf');
-    } catch(err) {
+      const binary = atob(base64.split(',')[1]);
+      const len = binary.length;
+      const buffer = new ArrayBuffer(len);
+      const view = new Uint8Array(buffer);
+
+      for (let i = 0; i < binary.length; i++) {
+        view[i] = binary.charCodeAt(i);
+      }
+
+      return new Blob([view], {type: 'image/jpeg'});
+    } catch (err) {
       return 'File constructor not supported';
     }
   }

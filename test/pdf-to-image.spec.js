@@ -68,7 +68,7 @@ describe('Renders PDF pages as images', function() {
 			result.should.be.an('Object');
 
 			result.should.have.property('pageNum');
-			result.should.have.property('file');
+			result.should.have.property('blob');
 		});
 
 		pdfToImage.addListener('finish', function() {

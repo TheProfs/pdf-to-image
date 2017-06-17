@@ -57,8 +57,8 @@ var PdfToImage = function (_EventEmitter) {
                           case 0:
                             _context.next = 2;
                             return pdf.getPage(pageNum // eslint-disable-line no-await-in-loop
-                            ).then(_this2._renderPageAsBase64.bind(_this2)).then(_this2._base64ToFile.bind(_this2)).then(function (file) {
-                              _this2.emit('page', { pageNum: pageNum, file: file });
+                            ).then(_this2._renderPageAsBase64.bind(_this2)).then(_this2._base64ToFile.bind(_this2)).then(function (blob) {
+                              _this2.emit('page', { pageNum: pageNum, blob: blob });
                             });
 
                           case 2:
@@ -145,12 +145,19 @@ var PdfToImage = function (_EventEmitter) {
   }, {
     key: '_base64ToFile',
     value: function _base64ToFile(base64) {
-      var blob = new Blob([base64], { type: 'application/pdf' });
-
       // @NOTE
-      // File constructor errors in PhantomJS, the test driver used for testing
+      // Blob constructor errors in PhantomJS, the test driver used for testing
       try {
-        return new File([blob], 'export.pdf');
+        var binary = atob(base64.split(',')[1]);
+        var len = binary.length;
+        var buffer = new ArrayBuffer(len);
+        var view = new Uint8Array(buffer);
+
+        for (var i = 0; i < binary.length; i++) {
+          view[i] = binary.charCodeAt(i);
+        }
+
+        return new Blob([view], { type: 'image/jpeg' });
       } catch (err) {
         return 'File constructor not supported';
       }

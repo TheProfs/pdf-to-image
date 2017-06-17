@@ -26,8 +26,8 @@ const pdfToImage = new PdfToImage();
 pdfToImage.addListener('page', result => {
 /*
  * result includes:
- * - page number: Number: The page number
- * - file: File Object: An image file of each page
+ * - pageNum: Number: The page number
+ * - blob: Blob: A JPEG image blob of each page
  */
 });
 
