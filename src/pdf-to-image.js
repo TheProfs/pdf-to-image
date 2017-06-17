@@ -22,8 +22,8 @@ class PdfToImage extends EventEmitter { // eslint-disable-line no-unused-vars
         await pdf.getPage(pageNum) // eslint-disable-line no-await-in-loop
           .then(this._renderPageAsBase64.bind(this))
           .then(this._base64ToFile.bind(this))
-          .then(blob => {
-            this.emit('page', {pageNum, blob});
+          .then(file => {
+            this.emit('page', {pageNum, file});
           });
       }
 
@@ -47,7 +47,9 @@ class PdfToImage extends EventEmitter { // eslint-disable-line no-unused-vars
         view[i] = binary.charCodeAt(i);
       }
 
-      return new Blob([view], {type: 'image/jpeg'});
+      const blob = new Blob([view], {type: 'image/jpeg'});
+
+      return new File([blob], 'export.png');
     } catch (err) {
       return 'File constructor not supported';
     }

@@ -27,7 +27,7 @@ pdfToImage.addListener('page', result => {
 /*
  * result includes:
  * - pageNum: Number: The page number
- * - blob: Blob: A JPEG image blob of each page
+ * - file: File: A JPEG image file of each page
  */
 });
 
