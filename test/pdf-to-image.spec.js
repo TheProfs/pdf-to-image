@@ -68,21 +68,7 @@ describe('Renders PDF pages as images', function() {
 			result.should.be.an('Object');
 
 			result.should.have.property('pageNum');
-			result.should.have.property('images');
-
-			result.pageNum.should.be.a('Number');
-			result.pageNum.should.be.above(0);
-
-			result.images.should.have.property('original');
-			result.images.should.have.property('thumbnail');
-
-			result.images.original.should.be.a('String');
-			result.images.original.should.have.length.above(200);
-
-			result.images.thumbnail.should.be.a('String');
-			result.images.thumbnail.should.have.length.above(200);
-
-			result.images.thumbnail.length.should.be.lessThan(result.images.original.length);
+			result.should.have.property('file');
 		});
 
 		pdfToImage.addListener('finish', function() {
