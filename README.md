@@ -26,8 +26,8 @@ const pdfToImage = new PdfToImage();
 pdfToImage.addListener('page', result => {
 /*
  * result includes:
- * - page number
- * - 2 Base64's; a full-sized image & an A4 thumbnail of the page
+ * - page number: Number: The page number
+ * - file: File Object: An image file of each page
  */
 });
 
