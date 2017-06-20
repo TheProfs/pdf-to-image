@@ -49,9 +49,12 @@ class PdfToImage extends EventEmitter { // eslint-disable-line no-unused-vars
 
       const blob = new Blob([view], {type: 'image/jpeg'});
 
-      return new File([blob], 'export.png');
+      return new File([blob], 'export.jpg', {type: 'image/jpeg'});
     } catch (err) {
-      return 'File constructor not supported';
+      return {
+        msg: 'File constructor not supported',
+        type: 'image/jpeg'
+      };
     }
   }
 

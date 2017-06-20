@@ -69,6 +69,16 @@ describe('Renders PDF pages as images', function() {
 
 			result.should.have.property('pageNum');
 			result.should.have.property('file');
+
+      /*
+       * @NOTE Not really creating a `File` object when tests are run,
+       * since PhantomJS (the test env.) doesn't support the `File/Blob`
+       * constructors. We use a `try..catch` construct instead within
+       * this lib to emulate a `File` response
+       */
+      result.file.should.have.property('type');
+      result.file.type.should.be.a('String');
+      result.file.type.should.equal('image/jpeg');
 		});
 
 		pdfToImage.addListener('finish', function() {
