@@ -52,7 +52,7 @@ class PdfToImage extends EventEmitter { // eslint-disable-line no-unused-vars
       return {
         size: 100000,
         type: 'image/jpeg'
-      }
+      };
     }
   }
 
