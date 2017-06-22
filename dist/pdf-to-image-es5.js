@@ -57,8 +57,8 @@ var PdfToImage = function (_EventEmitter) {
                           case 0:
                             _context.next = 2;
                             return pdf.getPage(pageNum // eslint-disable-line no-await-in-loop
-                            ).then(_this2._renderPageAsBase64.bind(_this2)).then(_this2._base64ToFile.bind(_this2)).then(function (file) {
-                              _this2.emit('page', { pageNum: pageNum, file: file });
+                            ).then(_this2._renderPageAsBase64.bind(_this2)).then(_this2._base64ToFile.bind(_this2)).then(function (blob) {
+                              _this2.emit('page', { pageNum: pageNum, blob: blob });
                             });
 
                           case 2:
@@ -157,12 +157,10 @@ var PdfToImage = function (_EventEmitter) {
           view[i] = binary.charCodeAt(i);
         }
 
-        var blob = new Blob([view], { type: 'image/jpeg' });
-
-        return new File([blob], 'export.jpg', { type: 'image/jpeg' });
+        return new Blob([view], { type: 'image/jpeg' });
       } catch (err) {
         return {
-          msg: 'File constructor not supported',
+          size: 100000,
           type: 'image/jpeg'
         };
       }
