@@ -200,7 +200,7 @@ var PdfToImage = function (_EventEmitter) {
   }, {
     key: '_createSequence',
     value: function _createSequence(max) {
-      return Array.from(Array(max).keys()).slice(1);
+      return Array.from(Array(max + 1).keys()).slice(1);
     }
   }]);
 
