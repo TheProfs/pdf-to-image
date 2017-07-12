@@ -84,6 +84,6 @@ class PdfToImage extends EventEmitter { // eslint-disable-line no-unused-vars
   }
 
   _createSequence(max) {
-    return Array.from(Array(max).keys()).slice(1);
+    return Array.from(Array(max + 1).keys()).slice(1);
   }
 }
