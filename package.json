@@ -1,6 +1,6 @@
 {
   "name": "pdf-to-image",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "Progressively render PDFs as images on the client",
   "main": "echo 'no entry point'",
   "directories": {
